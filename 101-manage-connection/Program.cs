@@ -3,12 +3,12 @@
 // ------------------------------------------------------------
 
 // <using_directives> 
+using MongoDB.Bson;
 using MongoDB.Driver;
 // </using_directives>
 
 // <client_credentials> 
 // New instance of CosmosClient class
-//var client = new MongoClient(Environment.GetEnvironmentVariable("MONGO_CONNECTION"));
 var client = new MongoClient(Environment.GetEnvironmentVariable("MONGO_CONNECTION"));
 
 var settings = client.Settings;
