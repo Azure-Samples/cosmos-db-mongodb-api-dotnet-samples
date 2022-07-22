@@ -7,7 +7,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 // </using_directives>
 
-// <create_databases>
+// <create_database>
 var client = new MongoClient(Environment.GetEnvironmentVariable("MONGO_CONNECTION"));
 
 client.GetDatabase("adventureworks").GetCollection<BsonDocument>("products").InsertOne(new BsonDocument() { { "Name", "surfboard" } });
