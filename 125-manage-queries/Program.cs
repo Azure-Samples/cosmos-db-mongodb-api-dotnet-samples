@@ -11,46 +11,47 @@ using MongoDB.Libmongocrypt;
 // <client_credentials> 
 // New instance of CosmosClient class
 //var client = new MongoClient();
-//var client = new MongoClient(Environment.GetEnvironmentVariable("MONGO_CONNECTION"));
+var client = new MongoClient(Environment.GetEnvironmentVariable("MONGO_CONNECTION"));
 
 var collection = client.GetDatabase("adventureworks").GetCollection<BsonDocument>("products");
 // </client_credentials>
 
 // <query_documents>
-// insert documents
-var product = new BsonDocument
+// insert documents to query
+var products = new List<BsonDocument>()
 {
-    { "_id",  new ObjectId("62b1f43a9446918500c875c5") },
-    { "name", "Sand Surfboard" },
-    { "category", "gear-surfboards" },
-    { "count", 1 }
-};
-var product2 = new BsonDocument
-{
-    { "_id",   new ObjectId("12b1f43a9446918500c875c5") },
-    { "name", "Ocean Surfboard" },
-    { "category", "gear-surfboards" },
-    { "count", 5 }
-};
-var product3 = new BsonDocument
-{
-    { "_id",   new ObjectId("55b1f43a9446918500c875c5") },
-    { "name", "Beach Towel" },
-    { "category", "gear-accessories" },
-    { "count", 4 }
-};
-var product4 = new BsonDocument
-{
-    { "_id",   new ObjectId("33b1f43a9446918500c875c5") },
-    { "name", "Sunglasses" },
-    { "category", "gear-accessories" },
-    { "count", 5 }
+    new BsonDocument
+    {
+        { "_id",  new ObjectId("62b1f43a9446918500c875c5") },
+        { "name", "Sand Surfboard" },
+        { "category", "gear-surfboards" },
+        { "count", 1 }
+    },
+    new BsonDocument
+    {
+        { "_id",   new ObjectId("12b1f43a9446918500c875c5") },
+        { "name", "Ocean Surfboard" },
+        { "category", "gear-surfboards" },
+        { "count", 5 }
+    },
+    new BsonDocument
+    {
+        { "_id",   new ObjectId("55b1f43a9446918500c875c5") },
+        { "name", "Beach Towel" },
+        { "category", "gear-accessories" },
+        { "count", 4 }
+    },
+    new BsonDocument
+    {
+        { "_id",   new ObjectId("33b1f43a9446918500c875c5") },
+        { "name", "Sunglasses" },
+        { "category", "gear-accessories" },
+        { "count", 5 }
+    }
 };
 
-collection.InsertOne(product);
-collection.InsertOne(product2);
-collection.InsertOne(product3);
-collection.InsertOne(product4);
+
+collection.InsertMany(products);
 
 // Find by ID
 var filter = Builders<BsonDocument>.Filter.Gt("_id", "62b1f43a9446918500c875c5");
