@@ -22,7 +22,9 @@ Console.WriteLine($"The database has {collections.ToList().Count} collection.");
 
 // <get_all_databases>
 var dbFindList = client.ListDatabaseNames().ToList();
+// </get_all_databases>
 
+// <check_database_exists>
 var dbFound = dbFindList.FirstOrDefault(x => x == "adventureworks");
 if (dbFound is not null)
 {
@@ -32,7 +34,7 @@ else
 {
     Console.WriteLine($"{dbFound} database not found.");
 }
-// </get_all_databases>
+// </check_database_exists>
 
 // <drop_database>
 client.DropDatabase("adventureworks");
