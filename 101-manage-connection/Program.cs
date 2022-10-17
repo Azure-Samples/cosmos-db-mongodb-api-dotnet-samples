@@ -9,7 +9,7 @@ using MongoDB.Driver;
 
 // <client_credentials> 
 // New instance of CosmosClient class
-var client = new MongoClient(Environment.GetEnvironmentVariable("MONGO_CONNECTION"));
+var client = new MongoClient(Environment.GetEnvironmentVariable("COSMOS_CONNECTION_STRING"));
 
 var settings = client.Settings;
 
